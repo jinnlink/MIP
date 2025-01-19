@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --miku-primary: #39c5bb;
+  --miku-secondary: #4de4d9;
+  --miku-accent: #66fffa;
+  --background: #f0f7f7;
+  --gradient-start: #39c5bb;
+  --gradient-end: #66fffa;
+  --card-shadow-color: rgba(57, 197, 187, 0.15);
+  --text-shadow-color: rgba(57, 197, 187, 0.2);
+}
+
+body {
+  background-color: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  letter-spacing: -0.01em;
+}
+
+.android-touch {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+.glow {
+  filter: drop-shadow(0 0 5px var(--miku-primary));
+}
+
+.circle-progress {
+  transform-origin: center;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.02); }
+  50% { transform: scale(0.98); }
+  75% { transform: scale(1.02); }
+}
+
+.miku-title {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.current-node-text {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.02em;
+}
+
+.node-name {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(57, 197, 187, 0.1);
+}
+
+.timer-display {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  box-shadow: 
+    3px 3px 6px rgba(0, 0, 0, 0.1),
+    -3px -3px 6px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(57, 197, 187, 0.3);
+  transform: translateZ(0);
+}
+
+.timer-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: var(--miku-primary);
+  font-weight: 600;
+}
+
+/* 主卡片容器 */
+.main-card {
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  box-shadow: 
+    12px 12px 24px rgba(0, 0, 0, 0.1),
+    -12px -12px 24px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 控制按钮样式 */
+.control-button {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  will-change: transform;
+  overflow: hidden;
+  box-shadow: 
+    8px 8px 20px rgba(0, 0, 0, 0.15),
+    -4px -4px 12px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, var(--miku-primary), var(--miku-accent));
+  position: relative;
+}
+
+.bg-gradient-red {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  position: relative;
+}
+
+.bg-gradient::before,
+.bg-gradient-red::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2));
+  animation: gradient-shift 2s linear infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.button-shadow {
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.1),
+    -4px -4px 8px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.control-button:active {
+  transform: scale(0.95) translateZ(0);
+  box-shadow: 
+    4px 4px 8px var(--card-shadow-color),
+    -2px -2px 6px rgba(255, 255, 255, 0.8),
+    inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* 功能卡片样式 */
+.card-normal {
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  box-shadow: 
+    6px 6px 12px rgba(0, 0, 0, 0.08),
+    -6px -6px 12px rgba(255, 255, 255, 0.9),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: translateZ(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.card-selected {
+  background: linear-gradient(145deg, #f8f8f8, #ffffff);
+  box-shadow: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.05),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9),
+    0 0 0 2px var(--miku-primary),
+    4px 4px 12px var(--card-shadow-color);
+  border: 1px solid rgba(57, 197, 187, 0.4);
+  transform: translateZ(0) scale(1.02);
+}
+
+.touch-button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: all 0.3s cubic- shadow-color);
+  will-change: transform;
+}
+
+.touch-button:active {
+  transform: scale(0.95);
+}
+
+/* 滑块样式优化 */
+.touch-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  border-radius: 9999px;
+  outline: none;
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.1),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(57, 197, 187, 0.3);
+  touch-action: manipulation;
+}
+
+.touch-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  border: 2px solid var(--miku-primary);
+  border-radius: 50%;
+  box-shadow: 
+    6px 6px 12px rgba(57, 197, 187, 0.2),
+    -2px -2px 6px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+  transform: translateZ(0);
+}
+
+.touch-slider::-webkit-slider-thumb:active {
+  transform: scale(1.1) translateZ(0);
+  box-shadow: 
+    3px 3px 6px rgba(57, 197, 187, 0.2),
+    -1px -1px 3px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 自定义滚动条样式 */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--miku-primary) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--miku-primary);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--miku-secondary);
+}
